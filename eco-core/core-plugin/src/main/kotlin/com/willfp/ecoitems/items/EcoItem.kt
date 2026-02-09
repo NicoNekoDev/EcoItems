@@ -1,6 +1,5 @@
 package com.willfp.ecoitems.items
 
-import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.display.Display
 import com.willfp.eco.core.items.CustomItem
@@ -9,6 +8,7 @@ import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.recipe.Recipes
 import com.willfp.eco.core.registry.Registrable
 import com.willfp.ecoitems.items.components.ComponentHandlers
+import com.willfp.ecoitems.plugin
 import com.willfp.ecoitems.rarity.Rarities
 import com.willfp.libreforge.Holder
 import com.willfp.libreforge.ViolationContext
@@ -21,8 +21,7 @@ import java.util.Objects
 
 class EcoItem(
     id: String,
-    val config: Config,
-    private val plugin: EcoPlugin
+    val config: Config
 ) : Holder, Registrable {
     override val effects = Effects.compile(
         config.getSubsections("effects"),
