@@ -25,7 +25,7 @@ object EcoItemsRecipes : ConfigCategory("recipe", "recipes") {
             item.amount = config.getInt("recipe-give-amount") // Legacy
         }
 
-        plugin.scheduler.run {
+        plugin.scheduler.runTask {
             Recipes.createAndRegisterRecipe(
                 plugin, id, item, config.getStrings("recipe"), config.getStringOrNull("permission")
             )

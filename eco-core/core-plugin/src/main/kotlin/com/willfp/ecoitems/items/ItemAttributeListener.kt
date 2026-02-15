@@ -14,12 +14,13 @@ import org.bukkit.inventory.EquipmentSlotGroup
 object ItemAttributeListener : Listener {
     @EventHandler
     fun handle(event: PlayerItemHeldEvent) {
+        val player = event.player
         if (event.isCancelled) {
             return
         }
 
-        apply(event.player)
-        plugin.scheduler.run { apply(event.player) }
+        apply(player)
+        plugin.scheduler.runTask(player) { apply(player) }
     }
 
     private fun apply(player: Player) {
