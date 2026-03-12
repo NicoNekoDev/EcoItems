@@ -25,8 +25,18 @@ object EcoItemsRecipes : ConfigCategory("recipe", "recipes") {
             item.amount = config.getInt("recipe-give-amount") // Legacy
         }
 
-        Recipes.createAndRegisterRecipe(
-            plugin, id, item, config.getStrings("recipe"), config.getStringOrNull("permission")
-        )
+        plugin.scheduler.run {
+            val recipeStrings = config.getStrings("recipe")
+            if (recipeStrings.isEmpty()) return@run
+
+            Recipes.createAndRegisterRecipe(
+                plugin,
+                id,
+                item,
+                recipeStrings,
+                config.getStringOrNull("permission"),
+                config.getBool("shapeless")
+            )
+        }
     }
 }
